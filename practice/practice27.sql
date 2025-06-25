@@ -1,0 +1,37 @@
+/* 1번 */
+CREATE TABLE T_ITEM_LIST
+(
+    no NUMBER(6) PRIMARY KEY,
+    item_name VARCHAR2(24) NOT NULL,
+    price NUMBER(6),
+    create_date DATE DEFAULT (SYSDATE)
+);
+
+
+/* 2번 */
+CREATE SEQUENCE T_ITEM_LIST_PK_SEQ
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 999999
+NOCYCLE;
+
+/* 3번 */
+select T_ITEM_LIST_PK_SEQ.currval from dual;
+-- => 현재 값 확인 
+select T_ITEM_LIST_PK_SEQ.nextval from dual;
+-- => 다음 값 사용
+
+/* 4번 */
+select * from T_ITEM_LIST;
+
+INSERT INTO T_ITEM_LIST VALUES ( T_ITEM_LIST_PK_SEQ.nextval, '하나', 1000, SYSDATE );
+INSERT INTO T_ITEM_LIST VALUES ( T_ITEM_LIST_PK_SEQ.nextval, '둘', 2000, SYSDATE );
+INSERT INTO T_ITEM_LIST VALUES ( T_ITEM_LIST_PK_SEQ.nextval, '셋', 3000, SYSDATE );
+
+
+--악! 실수!! 삭제하고 다시하자ㅠㅠ
+DROP SEQUENCE T_ITEM_LIST_PK_SEQ;
+DELETE FROM T_ITEM_LIST;
+DROP TABLE T_ITEM_LIST;
+
+
